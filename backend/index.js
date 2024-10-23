@@ -5,7 +5,6 @@ import booksRouter from "./routes/booksRoute.js";
 
 
 const app = express();
-// const cors= cors();
 
 // Middleware for parsing body request
 app.use(express.json());
