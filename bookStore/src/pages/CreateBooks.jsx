@@ -3,26 +3,30 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import BackBtn from "../components/BackBtn";
+import { enqueueSnackbar } from "notistack";
 
 function CreateBooks() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({ title: "", author: "", publishYear: "" });
   const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   const handleSaveBook = () => {
-    // const data = {
-    //   data.title,
-    //  data.author,
-    //   data.publishYear,
-    // };
+    console.log(data);
     setIsLoading(true);
     axios
       .post("http://localhost:5555/books", data)
       .then(() => {
-        navigate("/");
         setIsLoading(false);
+        enqueueSnackbar("book created succesfully :)", { variant: "success" });
+        navigate("/");
       })
       .catch((error) => {
         setIsLoading(false);
+        enqueueSnackbar("Book is NOT created :(", { variant: "error" });
         console.error(error);
       });
   };
@@ -37,8 +41,9 @@ function CreateBooks() {
           <label className="text-xl mr-4 text-gray-500">Title</label>
           <input
             type="text"
+            name="title"
             value={data.title}
-            onChange={(e) => setData(e.target.value)}
+            onChange={handleInputChange}
             className="border-2 border-gray-500 px-4 py-2 w-full"
           />
         </div>
@@ -46,8 +51,9 @@ function CreateBooks() {
           <label className="text-xl mr-4 text-gray-500">Author</label>
           <input
             type="text"
+            name="author"
             value={data.author}
-            onChange={(e) => setData(e.target.value)}
+            onChange={handleInputChange}
             className="border-2 border-gray-500 px-4 py-2  w-full "
           />
         </div>
@@ -55,8 +61,9 @@ function CreateBooks() {
           <label className="text-xl mr-4 text-gray-500">Publish Year</label>
           <input
             type="number"
+            name="publishYear"
             value={data.publishYear}
-            onChange={(e) => setData(e.target.value)}
+            onChange={handleInputChange}
             className="border-2 border-gray-500 px-4 py-2  w-full "
           />
         </div>
