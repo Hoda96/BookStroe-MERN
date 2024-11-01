@@ -15,7 +15,6 @@ function CreateBooks() {
   };
 
   const handleSaveBook = () => {
-    console.log(data);
     setIsLoading(true);
     axios
       .post("http://localhost:5555/books", data)
@@ -33,8 +32,10 @@ function CreateBooks() {
 
   return (
     <div className="p-4">
-      <BackBtn />
-      <h1 className="text-3xl my-4">Create Book</h1>
+      <div className="flex justify-between items-center my-4 px-2">
+        <h1 className="text-3xl my-4">Create Book</h1>
+        <BackBtn />
+      </div>
       {isLoading ? <Loading /> : ""}
       <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
         <div className="my-4">

@@ -18,8 +18,10 @@ function DeleteBooks() {
       .catch((error) => console.error(error));
   };
   return (
-    <div>
-      <BackBtn />
+    <div className="p-4">
+      <div className="flex justify-between items-center my-4 px-2">
+        <BackBtn />
+      </div>
       <button onClick={handleDeleteBook}>Delet?</button>
     </div>
   );
