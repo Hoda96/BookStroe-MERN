@@ -1,7 +1,12 @@
+import BackBtn from "../components/BackBtn";
+
 function EditBooks() {
   return (
-    <div>EditBooks</div>
-  )
+    <div>
+      EditBooks
+      <BackBtn />
+    </div>
+  );
 }
 
-export default EditBooks
+export default EditBooks;

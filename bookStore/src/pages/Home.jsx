@@ -22,12 +22,13 @@ function Home() {
         setIsLoading(false);
       });
   }, []);
+
   return (
     <div className="p-4">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl text-center">Books List</h1>
+      <div className="flex justify-between items-center my-4 px-2">
+        <h1 className="text-2xl">Books List</h1>
         <Link to={"/books/create"}>
-          <MdOutlineAddBox className="" />
+          <MdOutlineAddBox className="text-3xl text-green-800" />
         </Link>
       </div>
       {isLoading ? (
@@ -51,7 +52,7 @@ function Home() {
             {books.map((book) => (
               <tr key={book._id} className="h-8">
                 <td className="border border-slate-700 rounded-md text-center">
-                  {book.index}
+                  {book.count}
                 </td>
                 <td className="border border-slate-700 rounded-md text-center">
                   {book.title}

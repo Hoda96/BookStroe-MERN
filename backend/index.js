@@ -2,25 +2,16 @@ import express from "express";
 import { mongoDBURL, PORT } from "./config.js";
 import mongoose from "mongoose";
 import booksRouter from "./routes/booksRoute.js";
-
+import cors from "cors";
 
 const app = express();
 
 // Middleware for parsing body request
 app.use(express.json());
 
-app.get("/", (request, response) => {
-  console.log(request);
-  return response
-    .status(200)
-    .send("Well Done. You've created your first HTTP route");
-});
-
-app.use("/books", booksRouter);
-
 // Middleware for handling CORS  Policy
 // 1) Allow all origins with default CORS(*)
-// app.use(cors());
+app.use(cors());
 // 2) Allow custom origins
 // app.use(
 //   cors({
@@ -29,6 +20,15 @@ app.use("/books", booksRouter);
 //     allowedHeaders: ['Content-Type'],
 //   })
 // );
+
+app.get("/", (request, response) => {
+  console.log(request, response);
+  return response
+    .status(200)
+    .send("Well Done. You've created your first HTTP route");
+});
+
+app.use("/books", booksRouter);
 
 mongoose
   .connect(mongoDBURL)
