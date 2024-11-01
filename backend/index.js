@@ -22,7 +22,6 @@ app.use(cors());
 // );
 
 app.get("/", (request, response) => {
-  console.log(request, response);
   return response
     .status(200)
     .send("Well Done. You've created your first HTTP route");

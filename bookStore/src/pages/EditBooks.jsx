@@ -34,7 +34,6 @@ function EditBooks() {
   };
 
   const handleEditBook = () => {
-    console.log(data);
     setIsLoading(true);
     axios
       .put(`http://localhost:5555/books/${id}`, data)
